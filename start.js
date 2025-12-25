@@ -13,6 +13,9 @@ module.exports = {
           // CPUメモリの使用を最適化
           "OMP_NUM_THREADS": "2",
           "MKL_NUM_THREADS": "2",
+          // メモリマッピングを有効化（大きなモデルファイルの読み込みを最適化）
+          "HF_HUB_ENABLE_HF_TRANSFER": "1",
+          "HF_HUB_DISABLE_EXPERIMENTAL_WARNING": "1",
           // ディスクキャッシュの制限（GB単位、デフォルトは無制限）
           "HF_HOME": "{{cwd}}/cache/HF_HOME",
           "TORCH_HOME": "{{cwd}}/cache/TORCH_HOME",
