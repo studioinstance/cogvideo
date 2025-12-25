@@ -7,7 +7,16 @@ module.exports = {
         venv: "../env",                // Edit this to customize the venv folder path
         env: {
           "PYTORCH_ENABLE_MPS_FALLBACK": "1",
-          "PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True"
+          "PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True,max_split_size_mb:512",
+          // メモリ使用量を制限する環境変数
+          "PYTORCH_NO_CUDA_MEMORY_CACHING": "0",
+          // CPUメモリの使用を最適化
+          "OMP_NUM_THREADS": "2",
+          "MKL_NUM_THREADS": "2",
+          // ディスクキャッシュの制限（GB単位、デフォルトは無制限）
+          "HF_HOME": "{{cwd}}/cache/HF_HOME",
+          "TORCH_HOME": "{{cwd}}/cache/TORCH_HOME",
+          "GRADIO_TEMP_DIR": "{{cwd}}/cache/GRADIO_TEMP_DIR"
         },                   // Edit this to customize environment variables (see documentation)
         path: "app/inference",                // Edit this to customize the path to start the shell from
         message: [
