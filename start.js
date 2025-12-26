@@ -7,7 +7,8 @@ module.exports = {
         venv: "../env",                // Edit this to customize the venv folder path
         env: {
           "PYTORCH_ENABLE_MPS_FALLBACK": "1",
-          "PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True,max_split_size_mb:512",
+          // ページングファイルの使用を最適化（Windows）- より小さいチャンクサイズでメモリ使用量を削減
+          "PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True,max_split_size_mb:256",
           // メモリ使用量を制限する環境変数
           "PYTORCH_NO_CUDA_MEMORY_CACHING": "0",
           // CPUメモリの使用を最適化
